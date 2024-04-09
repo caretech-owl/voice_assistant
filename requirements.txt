@@ -1,0 +1,12 @@
+llama-cpp-python
+TTS
+optimum
+openai
+openai-whisper
+SpeechRecognition
+pyaudio
+openwakeword
+torch
+scipy
+numpy
+transformers

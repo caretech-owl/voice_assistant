@@ -1,0 +1,25 @@
+{
+    "llm": {
+        "model_path": "TheBloke/leo-hessianai-7B-chat-GGUF",
+        "filename": "leo-hessianai-7b-chat.Q4_K_M.gguf",
+        "chat_format": "chatml",
+        "system_prompt": "Dies ist eine Unterhaltung zwischen einem intelligenten, hilfsbereitem KI-Assistenten und einem Nutzer.\nDer Assistent gibt ausführliche, hilfreiche und ehrliche Antworten."
+    },
+    "stt": {
+        "model": "base",
+        "pause_threshold": 0.2,
+        "non_speaking_duration": 0.2,
+        "timeout": 10,
+        "phrase_time_limit": 10,
+        "language": "german"
+    },
+    "tts": {
+        "class": "TTS_TF",
+        "speaking_rate": 1.5
+    },
+    "wakeword": {
+        "chunk_size": 1280,
+        "model_path": "hey_jarvis",
+        "inference_framework": "onnx"
+    }
+}

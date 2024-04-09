@@ -1,0 +1,13 @@
+default_language_version:
+    python: python3.11
+
+repos:
+  # - repo: https://github.com/rhysd/actionlint
+  #   rev: v1.6.26
+  #   hooks:
+  #     - id: actionlint
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.1.4
+    hooks:
+      - id: ruff-format
+      - id: ruff
