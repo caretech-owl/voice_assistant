@@ -1,30 +1,17 @@
-import json
 import logging
 import sys
 
-from assistant.llm import LLM
 from assistant.stt import STT
 from assistant.tts import TTS_COCQUI, TTS_TF, TTS_Suno
 from assistant.wake_word import WakeWord
+from assistant.config import CONFIG
 
-root = logging.getLogger()
-root.setLevel(logging.DEBUG)
-root.addHandler(logging.StreamHandler(sys.stdout))
+from gerd.gen.chat_service import ChatService
 
-with open("config/config.json", "r") as f:
-    config = json.load(f)
-
-
-ww = WakeWord(**config["wakeword"])
-stt = STT(**config["stt"])
-llm = LLM(**config["llm"])
-if config["tts"]["class"] == "TTS_TF":
-    tts = TTS_TF(**config["tts"])
-elif config["tts"]["class"] == "TTS_Suno":
-    tts = TTS_Suno(**config["tts"])
-elif config["tts"]["class"] == "TTS_COCQUI":
-    tts = TTS_COCQUI(**config["tts"])
-
+ww = WakeWord(**CONFIG.wakeword.model_dump())
+stt = STT(**CONFIG.stt.model_dump())
+llm = ChatService(CONFIG.llm)
+tts = {"TTS_TF": TTS_TF, "TTS_Suno": TTS_Suno, "TTS_COCQUI": TTS_COCQUI}[CONFIG.tts.provider](**CONFIG.tts.model_dump())
 
 def check_keywords(input: str) -> bool:
     """
@@ -36,7 +23,7 @@ def check_keywords(input: str) -> bool:
     Returns:
         bool: True if the input contains a keyword and an action is performed, False otherwise.
     """
-    if "reset" in input.lower():
+    if any(word in input.lower() for word in ["reset", "danke", "copyright WDR"]):
         llm.reset()
         return True
     if "exit" in input.lower():
@@ -44,13 +31,14 @@ def check_keywords(input: str) -> bool:
     return False
 
 
-while True:
-    ww()
+if __name__ == "__main__":
+    logging.basicConfig(level=logging.DEBUG)
+    tts("Hallo! Ich bin einsatzbereit!")
     while True:
-        input = stt()
-        if check_keywords(input):
-            break
-        if input == "":
-            continue
-        response = llm(input)
-        tts(response)
+        ww()
+        while True:
+            input = stt()
+            if not input or check_keywords(input):
+                break
+            response = llm.submit_user_message(input)
+            tts(response.text)
