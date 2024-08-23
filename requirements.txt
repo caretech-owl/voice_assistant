@@ -1,4 +1,3 @@
-gerd @ git+https://github.com/caretech-owl/gerd.git@develop
 coqui-tts
 optimum
 SpeechRecognition
@@ -7,4 +6,4 @@ openai-whisper  # optional dependency for SpeechRecognition
 pyaudio
 openwakeword
 scipy
-gerd
+gerd @ git+https://github.com/caretech-owl/gerd.git@develop
