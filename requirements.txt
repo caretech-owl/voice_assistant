@@ -6,4 +6,4 @@ openai-whisper  # optional dependency for SpeechRecognition
 pyaudio
 openwakeword
 scipy
-gerd @ git+https://github.com/caretech-owl/gerd.git@develop
+gerd @ git+https://github.com/caretech-owl/gerd.git

@@ -5,9 +5,10 @@ from pydantic_settings import (
     SettingsConfigDict,
 )
 
-from gerd.models.gen import ModelConfig
+from gerd.models.gen import GenerationConfig
 
 PROJECT_DIR = Path(__file__).parent.parent
+
 
 class STTConfig(BaseSettings):
     model: str
@@ -17,6 +18,7 @@ class STTConfig(BaseSettings):
     phrase_time_limit: int
     language: str
 
+
 class TTSConfig(BaseSettings):
     provider: str
     model: str
@@ -24,10 +26,12 @@ class TTSConfig(BaseSettings):
     speaker: str
     split_sentences: bool
 
+
 class WakeWordConfig(BaseSettings):
     chunk_size: int
     model: str
     inference_framework: str
+
 
 class Settings(BaseSettings):
     model_config = SettingsConfigDict(
@@ -35,11 +39,12 @@ class Settings(BaseSettings):
         env_file_encoding="utf-8",
         env_nested_delimiter="__",
     )
-    
-    llm: ModelConfig
+
+    llm: GenerationConfig
     stt: STTConfig
     tts: TTSConfig
     wakeword: WakeWordConfig
+
 
 with Path(PROJECT_DIR, "config", "config.json").open() as f:
     CONFIG = Settings.model_validate_json(f.read())

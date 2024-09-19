@@ -1,9 +1,16 @@
 {
     "llm": {
-        "name": "TheBloke/DiscoLM_German_7b_v1-GGUF",
-        "file": "discolm_german_7b_v1.Q4_K_M.gguf",
-        "prompt": {
-            "text": "Du bist ein hilfreicher Assistent."
+        "model":{
+            "name": "TheBloke/DiscoLM_German_7b_v1-GGUF",
+            "file": "discolm_german_7b_v1.Q4_K_M.gguf",
+            "prompt": {
+                "system": {
+                    "text" : "Du bist ein hilfreicher Assistent."
+                    },
+                "user": {
+                    "text" : "{message}"
+                }
+            }
         }
     },
     "stt": {

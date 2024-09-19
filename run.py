@@ -43,5 +43,5 @@ if __name__ == "__main__":
             input = stt()
             if not input or check_keywords(input):
                 break
-            response = llm.submit_user_message(input)
+            response = llm.submit_user_message({"message": input})
             tts(response.text)
