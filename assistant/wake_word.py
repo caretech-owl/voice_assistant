@@ -92,7 +92,10 @@ class WakeWord:
         self.logger.info("WakewordListener.__call__(): Starting wakeword detection")
         while True:
             # Get audio
-            audio = np.frombuffer(self.mic_stream.read(self.CHUNK, exception_on_overflow=False), dtype=np.int16)
+            audio = np.frombuffer(
+                self.mic_stream.read(self.CHUNK, exception_on_overflow=False),
+                dtype=np.int16,
+            )
 
             # Feed to openWakeWord model
             prediction = self.owwModel.predict(audio)

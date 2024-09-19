@@ -11,7 +11,10 @@ from gerd.gen.chat_service import ChatService
 ww = WakeWord(**CONFIG.wakeword.model_dump())
 stt = STT(**CONFIG.stt.model_dump())
 llm = ChatService(CONFIG.llm)
-tts = {"TTS_TF": TTS_TF, "TTS_Suno": TTS_Suno, "TTS_COCQUI": TTS_COCQUI}[CONFIG.tts.provider](**CONFIG.tts.model_dump())
+tts = {"TTS_TF": TTS_TF, "TTS_Suno": TTS_Suno, "TTS_COCQUI": TTS_COCQUI}[
+    CONFIG.tts.provider
+](**CONFIG.tts.model_dump())
+
 
 def check_keywords(input: str) -> bool:
     """
