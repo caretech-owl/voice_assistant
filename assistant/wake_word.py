@@ -28,7 +28,7 @@ class WakeWord:
 
     Args:
         chunk_size (int): The size of each audio chunk to process.
-        model (str): The path to the wake word model.
+        model (str): Name of the wake word model.
         inference_framework (str): The framework used for inference.
         logger: The logger object for logging messages.
 
