@@ -1,9 +1,17 @@
 {
     "llm": {
-        "model_path": "TheBloke/DiscoLM_German_7b_v1-GGUF",
-        "filename": "discolm_german_7b_v1.Q4_K_M.gguf",
-        "chat_format": "chatml",
-        "system_prompt": "Du bist ein hilfreicher Assistent."
+        "model":{
+            "name": "TheBloke/DiscoLM_German_7b_v1-GGUF",
+            "file": "discolm_german_7b_v1.Q4_K_M.gguf",
+            "prompt": {
+                "system": {
+                    "text" : "Du bist ein hilfreicher Assistent."
+                    },
+                "user": {
+                    "text" : "{message}"
+                }
+            }
+        }
     },
     "stt": {
         "model": "small",
@@ -14,7 +22,7 @@
         "language": "german"
     },
     "tts": {
-        "class": "TTS_COCQUI",
+        "provider": "TTS_TF",
         "model": "tts_models/multilingual/multi-dataset/xtts_v2",
         "language": "de",
         "speaker": "Aaron Dreschner",
@@ -22,7 +30,7 @@
     },
     "wakeword": {
         "chunk_size": 1280,
-        "model_path": "hey_jarvis",
+        "model": "hey_jarvis",
         "inference_framework": "onnx"
     }
 }

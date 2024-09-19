@@ -28,7 +28,7 @@ class WakeWord:
 
     Args:
         chunk_size (int): The size of each audio chunk to process.
-        model_path (str): The path to the wake word model.
+        model (str): Name of the wake word model.
         inference_framework (str): The framework used for inference.
         logger: The logger object for logging messages.
 
@@ -43,12 +43,12 @@ class WakeWord:
     def __init__(
         self,
         chunk_size: int = 1280,
-        model_path: str = "hey_jarvis",
+        model: str = "hey_jarvis",
         inference_framework: str = "onnx",
         logger=None,
     ) -> None:
         # Get microphone stream
-        openwakeword.utils.download_models([model_path])
+        openwakeword.utils.download_models([model])
         FORMAT = pyaudio.paInt16
         CHANNELS = 1
         RATE = 16000
@@ -63,9 +63,9 @@ class WakeWord:
         )
 
         # Load pre-trained openwakeword models
-        if model_path != "":
+        if model != "":
             self.owwModel = Model(
-                wakeword_models=[model_path], inference_framework=inference_framework
+                wakeword_models=[model], inference_framework=inference_framework
             )
         else:
             self.owwModel = Model(inference_framework=inference_framework)
@@ -92,7 +92,10 @@ class WakeWord:
         self.logger.info("WakewordListener.__call__(): Starting wakeword detection")
         while True:
             # Get audio
-            audio = np.frombuffer(self.mic_stream.read(self.CHUNK), dtype=np.int16)
+            audio = np.frombuffer(
+                self.mic_stream.read(self.CHUNK, exception_on_overflow=False),
+                dtype=np.int16,
+            )
 
             # Feed to openWakeWord model
             prediction = self.owwModel.predict(audio)

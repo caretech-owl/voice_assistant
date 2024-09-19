@@ -1,12 +1,9 @@
-llama-cpp-python
-TTS
-optimum
-openai
-openai-whisper
+coqui-tts
+optimum > 1.21.0
 SpeechRecognition
+openai  # optional dependency for SpeechRecognition
+openai-whisper  # optional dependency for SpeechRecognition
 pyaudio
-openwakeword
-torch
+openwakeword >= 0.6.0
 scipy
-numpy
-transformers
+gerd @ git+https://github.com/caretech-owl/gerd.git

@@ -134,9 +134,7 @@ class TTS_Suno(TTS_BASE):
         super().__init__(**kwargs)
         from transformers import AutoProcessor, BarkModel
 
-        self.voice_processor = AutoProcessor.from_pretrained("suno/bark-small").to(
-            self.device
-        )
+        self.voice_processor = AutoProcessor.from_pretrained("suno/bark-small")
         self.voice_model = BarkModel.from_pretrained("suno/bark-small")
 
         self.voice_model = self.voice_model.to_bettertransformer()
