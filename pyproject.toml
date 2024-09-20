@@ -1,0 +1,27 @@
+[project]
+name = "voice-assistant"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "coqui-tts>=0.24.1",
+    "gerd",
+    "openai-whisper",
+    "openwakeword>=0.6.0",
+    "optimum>1.21.0",
+    "pyaudio>=0.2.14",
+    "scipy>=1.14.1",
+    "speechrecognition>=3.10.4",
+]
+
+[tool.uv]
+dev-dependencies = [
+    "pytest>=8.3.3",
+    "ruff>=0.6.6",
+]
+
+[tool.uv.sources]
+coqui-tts = { git = "https://github.com/idiap/coqui-ai-TTS" }
+gerd = { git = "https://github.com/caretech-owl/gerd.git" }
+openai-whisper = { git = "https://github.com/openai/whisper.git" }
