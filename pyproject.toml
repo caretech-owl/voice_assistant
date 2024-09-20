@@ -1,0 +1,25 @@
+[project]
+name = "voice-assisstant"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "coqui-tts>=0.24.0",
+    "gerd",
+    "llama-cpp-python>=0.2.90",
+    "numpy>=1.26.4",
+    "openai>=1.46.1",
+    "openai-whisper>=20231117",
+    "openwakeword>=0.6.0",
+    "optimum>=1.22.0",
+    "pyaudio>=0.2.14",
+    "scipy>=1.14.1",
+    "speechrecognition>=3.10.4",
+    "torch>=2.3.1",
+    "transformers>=4.44.2",
+    "ruff>=0.6.6",
+]
+
+[tool.uv.sources]
+gerd = { git = "https://github.com/caretech-owl/gerd.git" }
