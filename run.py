@@ -1,10 +1,10 @@
 import logging
 import sys
 
-from assistant.stt import STT
-from assistant.tts import TTS_COCQUI, TTS_TF, TTS_Suno
-from assistant.wake_word import WakeWord
-from assistant.config import CONFIG
+from voice_assistant.stt import STT
+from voice_assistant.tts import TTS_COCQUI, TTS_TF, TTS_Suno
+from voice_assistant.wake_word import WakeWord
+from voice_assistant.config import CONFIG
 
 from gerd.gen.chat_service import ChatService
 
