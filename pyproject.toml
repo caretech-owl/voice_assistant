@@ -6,7 +6,7 @@ readme = "README.md"
 requires-python = ">=3.10,<3.13"
 dependencies = [
     "coqui-tts",
-    "gerd",
+    "gerd>=0.4.0",
     "numpy>=1.26.4",
     "openai-whisper",
     "openwakeword>=0.6.0",
